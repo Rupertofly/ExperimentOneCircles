@@ -1,0 +1,3 @@
+{
+  "extends": ["semistandard", "p5js", "prettier"]
+}
