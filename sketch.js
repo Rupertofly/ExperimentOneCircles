@@ -4,7 +4,6 @@
 // region SEC: Globals
 
 let p5Canvas0;
-
 // endregion
 function preload() {}
 
