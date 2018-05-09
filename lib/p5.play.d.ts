@@ -1,5 +1,6 @@
 ///<reference path="p5.d.ts" />
 ///<reference path="p5.play.js" />
+
 declare namespace p5 {
   declare class Group {}
   //Functions
@@ -31,6 +32,9 @@ declare namespace p5 {
     cos(): void;
     sin(): void;
     atan2(): void;
+    setCollider(...args): void;
+    update(): void;
+
     position: p5.Vector;
     previousPosition: p5.Vector;
     newPosition: p5.Vector;

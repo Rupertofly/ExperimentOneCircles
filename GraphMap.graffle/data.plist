@@ -994,7 +994,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2018-05-08 23:50:48 +0000</string>
+	<string>2018-05-08 23:52:53 +0000</string>
 	<key>Modifier</key>
 	<string>Rupert Moore</string>
 	<key>MovementHandleVisible</key>
@@ -1241,6 +1241,8 @@
 						</dict>
 						<key>stroke</key>
 						<dict>
+							<key>Cap</key>
+							<integer>0</integer>
 							<key>Color</key>
 							<dict>
 								<key>b</key>
@@ -1256,6 +1258,8 @@
 							<string>FilledDiamond</string>
 							<key>HeadScale</key>
 							<real>0.5</real>
+							<key>Join</key>
+							<integer>0</integer>
 							<key>Legacy</key>
 							<false/>
 							<key>LineType</key>
@@ -1320,6 +1324,8 @@
 						</dict>
 						<key>stroke</key>
 						<dict>
+							<key>Cap</key>
+							<integer>0</integer>
 							<key>Color</key>
 							<dict>
 								<key>b</key>
@@ -1335,6 +1341,8 @@
 							<string>FilledDiamond</string>
 							<key>HeadScale</key>
 							<real>0.5</real>
+							<key>Join</key>
+							<integer>0</integer>
 							<key>Legacy</key>
 							<false/>
 							<key>LineType</key>
@@ -1399,6 +1407,8 @@
 						</dict>
 						<key>stroke</key>
 						<dict>
+							<key>Cap</key>
+							<integer>0</integer>
 							<key>Color</key>
 							<dict>
 								<key>b</key>
@@ -1414,6 +1424,8 @@
 							<string>FilledDiamond</string>
 							<key>HeadScale</key>
 							<real>0.5</real>
+							<key>Join</key>
+							<integer>0</integer>
 							<key>Legacy</key>
 							<false/>
 							<key>LineType</key>
@@ -7561,12 +7573,12 @@
 		<key>Sidebar_Tab</key>
 		<integer>0</integer>
 		<key>VisibleRegion</key>
-		<string>{{209.03028674598158, 137.3909319284796}, {1172.9729729729729, 882.88288288288311}}</string>
+		<string>{{7.1889760271707805, 0}, {861.16534931182866, 648.1889726003011}}</string>
 		<key>ZoomValues</key>
 		<array>
 			<array>
 				<string>Canvas 1</string>
-				<real>1.1100000000000001</real>
+				<real>1.5119047707161577</real>
 				<real>1.1100000000000001</real>
 			</array>
 		</array>
