@@ -77,8 +77,8 @@ class Actor {
     this.Sprite.maxSpeed = 2;
     this.Sprite.restitution = 0.8;
     this.Sprite.rotationSpeed = random() * 2;
-    // this.Sprite.velocity.x = Math.cos(Math.random() * TWO_PI);
-    // this.Sprite.velocity.y = Math.sin(Math.random() * TWO_PI);
+    this.Sprite.velocity.x = Math.cos(Math.random() * TWO_PI) / 10;
+    this.Sprite.velocity.y = Math.sin(Math.random() * TWO_PI) / 10;
 
     this.Sprite.setCollider("circle", 0, 0, 25);
 
@@ -167,7 +167,7 @@ function draw() {
   }
   asLinks();
 }
-function mousePressed() {
+function mouseClicked() {
   console.log(listOfActors);
   listOfActors.push(
     new Actor(this, mouseX, mouseY, {
@@ -207,7 +207,10 @@ function calculateLinks() {
     let cat2 = Math.floor(
       ((link.angle + PI + radians(n2.Sprite.rotation - 90)) % TWO_PI) * 2.999
     );
-    if (link.length > 70 && cat1 !== cat2) {
+    if (
+      link.length > 70 &&
+      n1.fingerprint.cols[cat1] !== n2.fingerprint.cols[cat2]
+    ) {
       n1.Sprite.attractionPoint(
         0.001,
         n2.Sprite.position.x,
