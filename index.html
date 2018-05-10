@@ -2,6 +2,8 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
     <script type="text/javascript" src="lib/p5.min.js"></script>
     <script type="text/javascript" src="lib/d3.min.js"></script>
     <script type="text/javascript" src="lib/pallete.js"></script>
@@ -21,10 +23,207 @@
             padding: 0;
             margin: 0;
         }
+
+        .c0 {
+            background-color: #F36B6A;
+
+        }
+
+        .c1 {
+            background-color: #F7916D;
+
+        }
+
+        .c2 {
+            background-color: #F0D887;
+
+        }
+
+        .c3 {
+            background-color: #8CCD87;
+
+        }
+
+        .c4 {
+            background-color: #5CB6DC;
+
+        }
+
+        .c5 {
+            background-color: #B378EB;
+        }
+
+        .rect {
+            width: 10px;
+            height: 10px;
+        }
     </style>
 </head>
 
 <body>
+    <div class="container fluid">
+        <div class="row justify-content-center">
+            <div id="canvas"></div>
+        </div>
+        <div class="row justify-content-left my-3">
+            <p class="h2">Add your own</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <p class="h5 my-2 md-3">Colours</p>
+            </div>
+            <div class="row">
+                <p class="h6">Colour 1</p>
+            </div>
+            <div class="row justify-content-left">
+                <div class="btn-group btn-group-toggle" id="c1" data-toggle="buttons">
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options1" id="option0">
+                        <div class="c0 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options1" id="option1">
+                        <div class="c1 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options1" id="option2">
+                        <div class="c2 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options1" id="option3">
+                        <div class="c3 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options1" id="option4">
+                        <div class="c4 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options1" id="option5">
+                        <div class="c5 p-3 rounded"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <p class="h6">Colour 2</p>
+            </div>
+            <div class="row justify-content-left">
+                <div class="btn-group btn-group-toggle" id="c2" data-toggle="buttons">
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options2" id="option0">
+                        <div class="c0 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options2" id="option1">
+                        <div class="c1 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options2" id="option2">
+                        <div class="c2 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options2" id="option3">
+                        <div class="c3 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options2" id="option4">
+                        <div class="c4 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options2" id="option5">
+                        <div class="c5 p-3 rounded"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <p class="h6">Colour 3</p>
+            </div>
+            <div class="row justify-content-left">
+                <div class="btn-group btn-group-toggle" id="c3" data-toggle="buttons">
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options3" id="option0">
+                        <div class="c0 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options3" id="option1">
+                        <div class="c1 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options3" id="option2">
+                        <div class="c2 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options3" id="option3">
+                        <div class="c3 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options3" id="option4">
+                        <div class="c4 p-3 rounded"></div>
+                    </label>
+                    <label for="" class="btn btn-light">
+                        <input type="radio" name="options3" id="option5">
+                        <div class="c5 p-3 rounded"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <p class="h5 my-1">Behaviours</p>
+            </div>
+            <div class="row justify-content-left">
+                <div class="btn-group-vertical mr-2 button-group-toggle" data-toggle="buttons" id="E_I">
+                    <label for="" class="btn-secondary btn">
+                        <input type="radio" name="E_I" id="E" style="display:none">Extroverted
+                    </label>
+                    <label for="" class="btn-secondary btn">
+                        <input type="radio" name="E_I" id="EI0" active style="display:none">Neither
+                    </label>
+                    <label for="" class="btn-secondary btn">Introverted
+                        <input type="radio" name="E_I" id="I" style="display:none">
+                    </label>
+                </div>
+                <div class="btn-group-vertical mr-2 button-group-toggle" data-toggle="buttons" id="N_S">
+                    <label for="" class="btn-secondary btn">Intuitive
+                        <input type="radio" name="N_S" id="N" style="display:none">
+                    </label>
+                    <label for="" class="btn-secondary btn" active>Neither
+                        <input type="radio" name="N_S" id="NS0" style="display:none">
+                    </label>
+                    <label for="" class="btn-secondary btn">Sensual
+                        <input type="radio" name="N_S" id="S" style="display:none">
+                    </label>
+                </div>
+                <div class="btn-group-vertical mr-2 button-group-toggle" data-toggle="buttons" id="T_F">
+                    <label for="" class="btn-secondary btn">Thoughtful
+                        <input type="radio" name="T_F" id="E" style="display:none">
+                    </label>
+                    <label for="" class="btn-secondary btn" active>Neither
+                        <input type="radio" name="T_F" id="E" active style="display:none">
+                    </label>
+                    <label for="" class="btn-secondary btn">Emotive
+                        <input type="radio" name="T_F" id="E" style="display:none">
+                    </label>
+                </div>
+                <div class="btn-group-vertical button-group-toggle" data-toggle="buttons" id="J_P">
+                    <label for="" class="btn-secondary btn">Judgemental
+                        <input type="radio" name="J_P" id="E" style="display:none">
+                    </label>
+                    <label for="" class="btn-secondary btn">Neither
+                        <input type="radio" name="J_P" id="E" style="display:none">
+                    </label>
+                    <label for="" class="btn-secondary btn">Perceptive
+                        <input type="radio" name="J_P" id="E" style="display:none">
+                    </label>
+                </div>
+            </div>
+            <div class="row justify-content-left my-3">
+                <button class="btn btn-primary btn-large">Submit</button>
+            </div>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo "
+                crossorigin="anonymous "></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 "
+                crossorigin="anonymous "></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
+                crossorigin="anonymous "></script>
 </body>
 
 </html>

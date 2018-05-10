@@ -1,17 +1,17 @@
 // @ts-check
 /* eslint no-undef: 0 */
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "setup|draw|preload|recordFrame|recordSetup|p5Canvas0" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "setup|draw|preload|recordFrame|recordSetup|p5Canvas0|mousePressed" }] */
 // region SEC: Globals
 /** Colours
  * @enum {string}
  */
 const colourEnum = [
-  getC(hues.reds, 4).hex,
-  getC(hues.apricots, 4).hex,
-  getC(hues.yellows, 4).hex,
-  getC(hues.greens, 4).hex,
-  getC(hues.blues, 4).hex,
-  getC(hues.purples, 4).hex
+  getC(hues.reds, 5).hex,
+  getC(hues.apricots, 5).hex,
+  getC(hues.yellows, 5).hex,
+  getC(hues.greens, 5).hex,
+  getC(hues.blues, 5).hex,
+  getC(hues.purples, 5).hex
 ];
 /**
  * canvas
@@ -44,6 +44,7 @@ function edgeCollide(s) {
     s.velocity.y = -abs(s.velocity.y);
   }
 }
+// Angle for Identifier
 const GR = 6.2831 / 1.618;
 /**
  * Actor Class
@@ -73,27 +74,39 @@ class Actor {
     /** @type {object} */
     this.prevGen = args.pg;
     this.lifeData = {};
-    this.relationships = {};
+    /** @type {Link[]} */
+    this.relationships = [];
+    // set Default maxspeed and restitution
     this.Sprite.maxSpeed = 2;
     this.Sprite.restitution = 0.8;
-    this.Sprite.rotationSpeed = random() * 2;
+    // set default roteSpeed
+    this.Sprite.rotationSpeed = random() * 0.3;
     this.Sprite.velocity.x = Math.cos(Math.random() * TWO_PI) / 10;
     this.Sprite.velocity.y = Math.sin(Math.random() * TWO_PI) / 10;
-
+    // Set Collision
     this.Sprite.setCollider("circle", 0, 0, 25);
+    let fill1 = color(colourEnum[this.fingerprint.cols[0]]);
+    let fill2 = color(colourEnum[this.fingerprint.cols[1]]);
+    let fill3 = color(colourEnum[this.fingerprint.cols[2]]);
 
+    // Draw Loop
     this.Sprite.draw = () => {
-      let fill1 = color(colourEnum[this.fingerprint.cols[0]]);
-      let fill2 = color(colourEnum[this.fingerprint.cols[1]]);
-      let fill3 = color(colourEnum[this.fingerprint.cols[2]]);
+      // Draw Outside Circles
       fill(getC(hues.neutrals, 4).hex);
       ellipse(0, 0, 50, 50);
-      fill(getC(hues.neutrals, 5).hex);
+      fill(getC(hues.neutrals, 6).hex);
       ellipse(0, 0, 46, 46);
+      this.formulateLifeData();
+      let startAng = 0 - radians(this.Sprite.rotation);
+      for (let c in this.lifeData) {
+        let endAng = startAng + TWO_PI * this.lifeData[c];
+        fill(colourEnum[c]);
+        arc(0, 0, 40, 40, startAng, endAng);
+        startAng = endAng;
+      }
       fill(getC(hues.neutrals, 6).hex);
       ellipse(0, 0, 30, 30);
       let ang1 = 0;
-
       let ang2 = TWO_PI / 3 * 1;
       let ang3 = TWO_PI / 3 * 2;
       fill(fill1);
@@ -102,7 +115,7 @@ class Actor {
       arc(0, 0, 25, 25, ang2, ang3);
       fill(fill3);
       arc(0, 0, 25, 25, ang3, TWO_PI);
-      fill(255);
+      fill(color(255));
       ellipse(0, 0, 20, 20);
       edgeCollide(this.Sprite);
 
@@ -115,6 +128,36 @@ class Actor {
         line(sin(ang) * 5, cos(ang) * 5, sin(ang2) * 5, cos(ang2) * 5);
       }
     };
+  }
+  formulateLifeData() {
+    for (let i = this.relationships.length - 1; i >= 0; i--) {
+      if (!listOfLinks.includes(this.relationships[i])) {
+        this.relationships.splice(i, 1);
+        continue;
+      }
+      let link = this.relationships[i];
+      if (this.lifeData[link.colour] === undefined)
+        this.lifeData[link.colour] = 0;
+      this.lifeData[link.colour] += 0.001;
+    }
+    for (let c in this.lifeData) {
+      /** @type {number} */
+      this.lifeData[c] -= 0.0001;
+      if (this.lifeData[c] < 0) {
+        delete this.lifeData[c];
+        continue;
+      }
+    }
+    /** @type {number} */
+    let sum = 1;
+    if (Object.keys(this.lifeData).length !== 0) {
+      sum = Object.values(this.lifeData).reduce((a, b) => {
+        return a + b;
+      });
+    }
+    for (let c in this.lifeData) {
+      this.lifeData[c] = this.lifeData[c] / sum;
+    }
   }
 }
 class Link {
@@ -150,11 +193,12 @@ class Link {
 function preload() {}
 /** @type {Actor[]} */
 let listOfActors = [];
+/** @type {Link[]} */
 let listOfLinks = [];
 function setup() {
   p5Canvas0 = createCanvas(800, 600);
+  p5Canvas0.parent("canvas");
 }
-let thislink = 0;
 function draw() {
   background(getC(hues.neutrals, 6).hex);
   for (let l of listOfLinks) {
@@ -168,6 +212,7 @@ function draw() {
   if (frameCount % 20 === 0) asLinks();
 }
 function mousePressed() {
+  if (mouseX > width || mouseY > height) return;
   console.log(listOfActors);
   listOfActors.push(
     new Actor(this, mouseX, mouseY, {
@@ -181,7 +226,7 @@ function mousePressed() {
   );
 }
 async function asLinks() {
-  await calculateLinks();
+  calculateLinks();
 }
 function calculateLinks() {
   let tempLinks = [];
@@ -189,11 +234,14 @@ function calculateLinks() {
     for (let [j, b] of listOfActors.entries()) {
       if (i >= j) continue;
       if (p5.Vector.dist(a.Sprite.position, b.Sprite.position) < 100) {
-        tempLinks.push(new Link(a, b, 2));
+        let l = new Link(a, b, 2);
+        tempLinks.push(l);
+        a.relationships.push(l);
+        b.relationships.push(l);
       }
     }
   }
-  let ang = 0;
+
   for (let link of tempLinks) {
     let n1 = link.node1;
     let n2 = link.node2;
@@ -236,10 +284,3 @@ function calculateLinks() {
   }
   listOfLinks = tempLinks;
 }
-/**
- *
- *
- * @param {p5.Vector} s1
- * @param {p5.Vector} s2
- * @returns
- */
