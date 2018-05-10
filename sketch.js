@@ -165,9 +165,9 @@ function draw() {
     i.Sprite.display();
     i.Sprite.bounce(allSprites);
   }
-  if (frameCount % 20 === 0)asLinks();
+  if (frameCount % 20 === 0) asLinks();
 }
-function mouseClicked() {
+function mousePressed() {
   console.log(listOfActors);
   listOfActors.push(
     new Actor(this, mouseX, mouseY, {
