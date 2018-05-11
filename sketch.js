@@ -384,20 +384,21 @@ function submitNewActor() {
   listOfActors.push(new Actor(this, random(width), random(height), actorArgs));
   location.reload();
 }
-function mousePressed() {
-  if (mouseX > width || mouseY > height) return;
-  console.log(listOfActors);
-  listOfActors.push(
-    new Actor(this, mouseX, mouseY, {
-      pg: {},
-      d1c: Math.floor(random(6)),
-      d2c: Math.floor(random(6)),
-      d3c: Math.floor(random(6)),
-      cH: second() % 8,
-      b: [5]
-    })
-  );
-}
+
+// function mousePressed() {
+//   if (mouseX > width || mouseY > height) return;
+//   console.log(listOfActors);
+//   listOfActors.push(
+//     new Actor(this, mouseX, mouseY, {
+//       pg: {},
+//       d1c: Math.floor(random(6)),
+//       d2c: Math.floor(random(6)),
+//       d3c: Math.floor(random(6)),
+//       cH: second() % 8,
+//       b: [5]
+//     })
+//   );
+// }
 async function asLinks() {
   calculateLinks();
 }
