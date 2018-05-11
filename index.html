@@ -7,12 +7,12 @@
     <script type="text/javascript" src="lib/p5.min.js"></script>
     <script type="text/javascript" src="lib/d3.min.js"></script>
     <script type="text/javascript" src="lib/pallete.js"></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <!-- <script type="text/javascript" src="lib/dat.gui.min.js"></script> -->
 
     <script src="lib/CCapture.min.js"></script>
     <!-- uncomment lines below to include extra p5 libraries -->
-    <!-- <script type="text/javascript" src="node_modules/p5/lib/addons/p5.dom.js"></script> -->
+    <script type="text/javascript" src="/lib/addons/p5.dom.js"></script>
     <!--<script type="text/javascript" src="node_modules/p5/lib/addons/p5.sound.js"></script>-->
     <script src="lib/p5.play.js" type="text/javascript"></script>
     <script src="lib/helperFuncs.js" type="text/javascript"></script>
@@ -65,8 +65,12 @@
         <div class="row justify-content-center">
             <div id="canvas"></div>
         </div>
-        <div class="row justify-content-left my-3">
+        <div class="row justify-content-left align-items-center mx-1 my-3">
             <p class="h2">Add your own</p>
+
+        </div>
+        <div class="row justify-content-left align-items-center m-3">
+            <div class="p-3" id="prev"></div>
         </div>
         <div class="container">
             <div class="row">
@@ -193,29 +197,29 @@
                 </div>
                 <div class="btn-group-vertical mr-2 button-group-toggle" data-toggle="buttons" id="T_F">
                     <label for="" class="btn-secondary btn">Thoughtful
-                        <input type="radio" name="T_F" id="E" style="display:none">
+                        <input type="radio" name="T_F" id="T" style="display:none">
                     </label>
                     <label for="" class="btn-secondary btn" active>Neither
-                        <input type="radio" name="T_F" id="E" active style="display:none">
+                        <input type="radio" name="T_F" id="TF0" active style="display:none">
                     </label>
                     <label for="" class="btn-secondary btn">Emotive
-                        <input type="radio" name="T_F" id="E" style="display:none">
+                        <input type="radio" name="T_F" id="F" style="display:none">
                     </label>
                 </div>
                 <div class="btn-group-vertical button-group-toggle" data-toggle="buttons" id="J_P">
                     <label for="" class="btn-secondary btn">Judgemental
-                        <input type="radio" name="J_P" id="E" style="display:none">
+                        <input type="radio" name="J_P" id="J" style="display:none">
                     </label>
                     <label for="" class="btn-secondary btn">Neither
-                        <input type="radio" name="J_P" id="E" style="display:none">
+                        <input type="radio" name="J_P" id="JP0" style="display:none">
                     </label>
                     <label for="" class="btn-secondary btn">Perceptive
-                        <input type="radio" name="J_P" id="E" style="display:none">
+                        <input type="radio" name="J_P" id="P" style="display:none">
                     </label>
                 </div>
             </div>
             <div class="row justify-content-left my-3">
-                <button class="btn btn-primary btn-large">Submit</button>
+                <button class="btn btn-primary btn-large" id="submitButton">Submit</button>
             </div>
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo "

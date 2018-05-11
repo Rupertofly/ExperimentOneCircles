@@ -899,7 +899,9 @@ declare function ellipse(
   detailX: number,
   detailY?: number
 ): void;
-
+interface HTMLCanvasElement {
+  parent: function;
+}
 /**
  *   Draws a line (a direct path between two points) to
  *   the screen. The version of line() with four
