@@ -119,6 +119,17 @@ class Actor {
       ellipse(0, 0, 50, 50);
       fill(getC(hues.neutrals, 6).hex);
       ellipse(0, 0, 48, 48);
+      let ang1 = 0;
+      let ang2 = TWO_PI / 3 * 1;
+      let ang3 = TWO_PI / 3 * 2;
+      fill(fill1);
+      arc(0, 0, 46, 46, ang1, ang2);
+      fill(fill2);
+      arc(0, 0, 46, 46, ang2, ang3);
+      fill(fill3);
+      arc(0, 0, 46, 46, ang3, TWO_PI);
+      fill(getC(hues.neutrals, 6).hex);
+      ellipse(0, 0, 36, 36);
       this.formulateLifeData();
       let startAng = 0 - radians(this.Sprite.rotation);
       let drawInd = 0;
@@ -126,21 +137,10 @@ class Actor {
         if (this.lifeData[c] !== 0 || this.lifeData[c] !== null) {
           let endAng = startAng + TWO_PI * this.lifeData[c] - 0.01;
           fill(colourEnum[c]);
-          if (this.lifeData[c] !== 0) arc(0, 0, 42, 42, startAng, endAng);
+          if (this.lifeData[c] !== 0) arc(0, 0, 30, 30, startAng, endAng);
           startAng = endAng;
         }
       }
-      fill(getC(hues.neutrals, 6).hex);
-      ellipse(0, 0, 36, 36);
-      let ang1 = 0;
-      let ang2 = TWO_PI / 3 * 1;
-      let ang3 = TWO_PI / 3 * 2;
-      fill(fill1);
-      arc(0, 0, 30, 30, ang1, ang2);
-      fill(fill2);
-      arc(0, 0, 30, 30, ang2, ang3);
-      fill(fill3);
-      arc(0, 0, 30, 30, ang3, TWO_PI);
       fill(color(255));
       ellipse(0, 0, 20, 20);
       edgeCollide(this.Sprite);
@@ -262,7 +262,7 @@ var preview = p => {
     p.ellipse(0, 0, 50, 50);
 
     p.fill(getC(hues.neutrals, 6).hex);
-    p.ellipse(0, 0, 46, 46);
+    p.ellipse(0, 0, 48, 48);
     let ang = [0, TWO_PI / 3 * 1, TWO_PI / 3 * 2, TWO_PI];
     for (let i = 1; i <= 3; i++) {
       let q = document.querySelector(`input[name="options${i}"]:checked`);
@@ -270,11 +270,11 @@ var preview = p => {
       } else {
         let j = q.id.match(/\d/);
         p.fill(colourEnum[j[0]]);
-        p.arc(0, 0, 25, 25, ang[i - 1], ang[i]);
+        p.arc(0, 0, 46, 46, ang[i - 1], ang[i]);
       }
     }
     p.fill(color(255));
-    p.ellipse(0, 0, 20, 20);
+    p.ellipse(0, 0, 36, 36);
     p.stroke(0);
     let d = new Date();
     let cHash = Math.floor(d.getTime() / 1000) % 32;
